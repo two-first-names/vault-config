@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
       - name: Vault CA
-        run: echo -n '${{secrets.VAULT_CA_CERT}}' | base64 -D > $VAULT_CACERT
+        run: echo -n '${{secrets.VAULT_CA_CERT}}' | base64 --decode > $VAULT_CACERT
 
       - name: Authenticate Vault
         uses: hashicorp/vault-action@v2
