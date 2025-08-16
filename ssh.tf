@@ -47,4 +47,9 @@ resource "vault_ssh_secret_backend_role" "clients_admin" {
   allow_user_certificates = true
   allowed_users           = "admin@engiqueer.net"
   default_user            = "admin@engiqueer.net"
+  allowed_extensions      = "permit-pty,permit-port-forwarding"
+
+  default_extensions = {
+    "permit-pty" = ""
+  }
 }

@@ -43,8 +43,8 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-      - name: Terraform Plan
-        id: plan
+      - name: Terraform Apply
+        id: apply
         run: terraform apply -auto-approve -no-color -input=false
 
       - name: Revoke Vault Token
