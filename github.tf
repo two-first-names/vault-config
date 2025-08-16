@@ -8,7 +8,7 @@ resource "vault_jwt_auth_backend" "github" {
 resource "vault_jwt_auth_backend_role" "github_admin" {
   backend         = vault_jwt_auth_backend.github.path
   role_name       = "github_admin"
-  bound_audiences = ["https://github.com/*"]
+  bound_audiences = ["https://github.com/two-first-names"]
   user_claim      = "sub"
   role_type       = "jwt"
   token_ttl       = 300
