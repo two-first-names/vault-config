@@ -11,9 +11,12 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      VAULT_CACERTL: /vault.crt
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
+      - name: Vault CA
+        run: echo -n '${{secrets.VAULT_CA_CERT}}' | base64 -D > /vault.crt
 
       - name: Authenticate Vault
         uses: hashicorp/vault-action@v2
@@ -44,5 +47,5 @@ jobs:
       - name: Revoke Vault Token
         if: always()
         run: |
-          curl -X POST -sv --fail-with-body -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
+          curl -X POST --cacert /vault.crt -sv --fail-with-body -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
             https://vault.engiqueer.net:8200/v1/auth/token/revoke-self
