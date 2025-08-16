@@ -23,7 +23,7 @@ jobs:
         with:
           url: https://vault.engiqueer.net:8200
           caCertificate: ${{ secrets.VAULT_CA_CERT }}
-          path: jwt-github-actions
+          path: jwt-github
           role: github-admin
           method: jwt
           exportToken: true
