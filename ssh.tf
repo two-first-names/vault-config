@@ -39,3 +39,12 @@ resource "vault_policy" "ssh_hosts" {
     }
   EOT
 }
+
+resource "vault_ssh_secret_backend_role" "clients_admin" {
+  name                    = "admin"
+  backend                 = vault_mount.ssh_client
+  key_type                = "ca"
+  allow_user_certificates = true
+  allowed_users           = "admin@engiqueer.net"
+  default_user            = "admin@engiqueer.net"
+}
