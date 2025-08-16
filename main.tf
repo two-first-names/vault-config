@@ -1,4 +1,6 @@
-provider "vault" {}
+provider "vault" {
+  address = "https://vault.engiqueer.net:8200"
+}
 
 locals {
   default_3y_in_sec  = 94608000
